@@ -1,0 +1,28 @@
+{% extends 'Main/base.html' %}
+
+    {% block title %}
+        Publicaciones
+    {% endblock title %}
+
+    {% block content_title %}
+    Lista de Publicaciones
+    {% endblock content_title %}
+
+    {% block content %}
+    <ul class="list-unstyled">
+        {% for post in posts %}
+        <li class="mb-4">
+            <a href="#" class="text-decoration-none">
+                <div class="card shadow-sm m-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">{{ post.titulo }}</h5>
+                        <p class="card-text text-muted">{{ post.contenido }}</p>
+                        <small class="text-secondary">Publicado el {{ post.fecha_publicacion }}</small>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endblock content %}
+

@@ -9,6 +9,12 @@
     {% endblock content_title %}
 
     {% block content %}
+    <a href="{% url 'blog:post_create' %}" class="btn btn-primary mb-3">Crear Publicación</a>
+
+    <form action="{% url 'blog:post_list' %}" method="get">
+        <input type="text" name="busqueda" placeholder="Buscar..." class="form-control mb-3" type="submit">
+    </form>
+
     <ul class="list-unstyled">
         {% for post in posts %}
         <li class="mb-4">

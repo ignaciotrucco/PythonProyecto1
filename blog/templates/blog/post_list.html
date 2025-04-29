@@ -15,20 +15,36 @@
         <input type="text" name="busqueda" placeholder="Buscar..." class="form-control mb-3" type="submit">
     </form>
 
-    <ul class="list-unstyled">
-        {% for post in posts %}
-        <li class="mb-4">
-            <a href="#" class="text-decoration-none">
-                <div class="card shadow-sm m-4">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary">{{ post.titulo }}</h5>
-                        <p class="card-text text-muted">{{ post.contenido }}</p>
-                        <small class="text-secondary">Publicado el {{ post.fecha_publicacion }}</small>
-                    </div>
-                </div>
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Fecha de Creación</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.titulo }}</td>
+                        <td>{{ post.autor }}</td>
+                        <td>{{ post.fecha_publicacion }}</td>
+                        {% if post.estado == "B" %}
+                            <td>Borrador</td>
+                        {% else %}
+                            <td><strong>Publicado</strong></td>
+                        {% endif %}
+                        <td class="text-center">
+                            <a href="{% url 'blog:post_detail' post.id %}" class="btn btn-info">Ver Mas</a>
+                            <a href="{% url 'blog:post_update' post.id %}" class="btn btn-warning">Editar</a>
+                            <a href="{% url 'blog:post_delete' post.id %}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% endblock content %}
 

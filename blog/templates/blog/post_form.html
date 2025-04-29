@@ -5,7 +5,11 @@
     {% endblock title %}
 
     {% block content_title %}
-        Formulario para crear una publicación
+        {% if form.instance.pk %}
+            Formulario para crear una publicación
+        {% else %}
+            Formulario para editar una publicación
+        {% endif %}
     {% endblock content_title %}
 
     {% block content %}
